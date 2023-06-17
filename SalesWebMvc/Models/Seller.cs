@@ -4,14 +4,14 @@
     {
         public Seller() { }
 
-        public Seller(int id, string name, string email, DateTime birthDate, double baseSalary, Departament departament)
+        public Seller(int id, string name, string email, DateTime birthDate, double baseSalary, int departmentId)
         {
             Id = id;
             Name = name;
             Email = email;
             BirthDate = birthDate;
             BaseSalary = baseSalary;
-            Departament = departament;
+            DepartmentId = departmentId;
         }
 
         public int Id { get; set; }
@@ -19,7 +19,8 @@
         public string Email { get; set; }
         public DateTime BirthDate { get; set; }
         public double BaseSalary { get; set; }
-        public Departament Departament { get; set; }
+        public int DepartmentId { get; set; }
+        public Department Department { get; set; }
         public ICollection<SalesRecord> Sales { get; set; } = new List<SalesRecord>();
 
         public void AddSales(SalesRecord sr)

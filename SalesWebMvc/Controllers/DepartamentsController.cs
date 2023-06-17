@@ -5,87 +5,87 @@ using SalesWebMvc.Models;
 
 namespace SalesWebMvc.Controllers
 {
-    public class DepartamentsController : Controller
+    public class DepartmentsController : Controller
     {
         private readonly SalesWebMvcContext _context;
 
-        public DepartamentsController(SalesWebMvcContext context)
+        public DepartmentsController(SalesWebMvcContext context)
         {
             _context = context;
         }
 
-        // GET: Departaments
+        // GET: Departments
         public async Task<IActionResult> Index()
         {
-              return _context.Departament != null ? 
-                          View(await _context.Departament.ToListAsync()) :
-                          Problem("Entity set 'SalesWebMvcContext.Departament'  is null.");
+              return _context.Department != null ? 
+                          View(await _context.Department.ToListAsync()) :
+                          Problem("Entity set 'SalesWebMvcContext.Department'  is null.");
         }
 
-        // GET: Departaments/Details/5
+        // GET: Departments/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Departament == null)
+            if (id == null || _context.Department == null)
             {
                 return NotFound();
             }
 
-            var departament = await _context.Departament
+            var Department = await _context.Department
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (departament == null)
+            if (Department == null)
             {
                 return NotFound();
             }
 
-            return View(departament);
+            return View(Department);
         }
 
-        // GET: Departaments/Create
+        // GET: Departments/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Departaments/Create
+        // POST: Departments/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] Departament departament)
+        public async Task<IActionResult> Create([Bind("Id,Name")] Department Department)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(departament);
+                _context.Add(Department);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(departament);
+            return View(Department);
         }
 
-        // GET: Departaments/Edit/5
+        // GET: Departments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Departament == null)
+            if (id == null || _context.Department == null)
             {
                 return NotFound();
             }
 
-            var departament = await _context.Departament.FindAsync(id);
-            if (departament == null)
+            var Department = await _context.Department.FindAsync(id);
+            if (Department == null)
             {
                 return NotFound();
             }
-            return View(departament);
+            return View(Department);
         }
 
-        // POST: Departaments/Edit/5
+        // POST: Departments/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Departament departament)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Department Department)
         {
-            if (id != departament.Id)
+            if (id != Department.Id)
             {
                 return NotFound();
             }
@@ -94,12 +94,12 @@ namespace SalesWebMvc.Controllers
             {
                 try
                 {
-                    _context.Update(departament);
+                    _context.Update(Department);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DepartamentExists(departament.Id))
+                    if (!DepartmentExists(Department.Id))
                     {
                         return NotFound();
                     }
@@ -110,49 +110,49 @@ namespace SalesWebMvc.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(departament);
+            return View(Department);
         }
 
-        // GET: Departaments/Delete/5
+        // GET: Departments/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Departament == null)
+            if (id == null || _context.Department == null)
             {
                 return NotFound();
             }
 
-            var departament = await _context.Departament
+            var Department = await _context.Department
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (departament == null)
+            if (Department == null)
             {
                 return NotFound();
             }
 
-            return View(departament);
+            return View(Department);
         }
 
-        // POST: Departaments/Delete/5
+        // POST: Departments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Departament == null)
+            if (_context.Department == null)
             {
-                return Problem("Entity set 'SalesWebMvcContext.Departament'  is null.");
+                return Problem("Entity set 'SalesWebMvcContext.Department'  is null.");
             }
-            var departament = await _context.Departament.FindAsync(id);
-            if (departament != null)
+            var Department = await _context.Department.FindAsync(id);
+            if (Department != null)
             {
-                _context.Departament.Remove(departament);
+                _context.Department.Remove(Department);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool DepartamentExists(int id)
+        private bool DepartmentExists(int id)
         {
-          return (_context.Departament?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Department?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
