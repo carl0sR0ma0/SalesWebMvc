@@ -345,7 +345,8 @@ namespace SalesWebMvc.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("DepartmentId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
 
                     b.Property<string>("Email")
                         .IsRequired()
