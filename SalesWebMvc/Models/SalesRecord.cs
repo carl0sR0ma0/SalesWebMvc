@@ -25,7 +25,8 @@ namespace SalesWebMvc.Models
         public double Amount { get; set; }
         public SaleStatus Status { get; set; }
 
-        public int SellerId { get; set; }
+        [Display(Name = "Saler")]
+        public int SellerId { get; set; } = 1;
         public Seller Seller { get; set; }
     }
 }
